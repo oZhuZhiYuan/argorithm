@@ -1,14 +1,14 @@
 package testcase
 
 import (
-	argo "argo/argorithm"
+	pro "argo/problems"
 	"testing"
 )
 
 func TestBracketIsVaild(t *testing.T) {
 	testcase := "{{}{}{}[]()[]}"
 	expect := true
-	ret := argo.BracketIsValid(testcase)
+	ret := pro.BracketIsValid(testcase)
 	if ret != expect {
 		t.Fatalf("test BracketIsVaild fail\nexpect: %t\nresult: %t", expect, ret)
 	}
