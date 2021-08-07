@@ -1,4 +1,4 @@
-package argorithm
+package problems
 
 func BracketIsValid(s string) bool {
 	brackets_map := map[byte]byte{'}': '{', ']': '[', ')': '('}
