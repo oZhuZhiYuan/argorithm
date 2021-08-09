@@ -1,14 +1,20 @@
 package problems
 
-// https://leetcode-cn.com/problems/two-sum/
-func Twosum(a []int, target int) [2]int {
-	m := make(map[int]int)
-	for i := range a {
-		x := target - a[i]
-		if _, ok := m[x]; ok {
-			return [2]int{m[x], i}
-		}
-		m[a[i]] = i
+/* https://leetcode-cn.com/problems/two-sum/
+ */
+
+// O(n)
+func Twosum(nums []int, target int) []int {
+	if len(nums) < 2 {
+		return []int{0, 0}
 	}
-	return [2]int{-1, -1}
+	map1 := make(map[int]int)
+	for i, v := range nums {
+		x := target - v
+		if j, ok := map1[x]; ok {
+			return []int{j, i}
+		}
+		map1[v] = i
+	}
+	return []int{0, 0}
 }
