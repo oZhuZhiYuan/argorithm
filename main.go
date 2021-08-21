@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"argo/problems"
+	"fmt"
+)
 
 func main() {
-	pre := ^int(^uint(0) >> 1)
-	fmt.Println(pre)
+	x := problems.MyPow2(2, 5)
+	fmt.Println(x)
 }
