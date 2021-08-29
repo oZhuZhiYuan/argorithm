@@ -18,6 +18,7 @@ func dfs(count *int, n, row, cols, pie, na int) {
 	}
 
 	/*
+		prune:
 		calculate avilable postion(bit) in this level and set to "1", irrelevent bits set to "0",
 		&(1<<n-1) is the trick ignore the irrelevent bits.
 		eg. 0000 0000 0000 0000 0000 0000 0000 1110 (n=4)

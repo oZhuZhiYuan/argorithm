@@ -1,5 +1,12 @@
 package problems
 
+/*
+算法思想：分治
+如果n是偶数，算一半，将一半的结果相乘
+如果n是奇数，算(n-1)/2,将结果相乘再乘x
+
+时间复杂度为O(logn)
+*/
 import (
 	"math"
 )
@@ -18,15 +25,16 @@ func MyPow(x float64, n int) float64 {
 	case 2:
 		return x * x
 	}
-	// 分治条件和子问题递归
+	//  n < 0 ,  return reciprocal
 	if n < 0 {
 		return 1 / MyPow(x, -n)
 	}
+	// n is even
 	if n&1 == 0 {
 		ret := MyPow(x, n>>1)
-		// generate the final result
 		return ret * ret
 	}
+	// n is odd
 	ret := MyPow(x, n>>1)
 	return ret * ret * x
 }
