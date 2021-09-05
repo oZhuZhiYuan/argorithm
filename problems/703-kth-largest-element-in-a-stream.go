@@ -1,65 +1,66 @@
 /*
 problem 703
 https://leetcode.com/problems/kth-largest-element-in-a-stream/
+问题：
+返回数据流中第k大的数
+解法：
+维护一个mini heap(小顶堆)，每进来一个int，就与堆顶比较
+如果小于堆顶，则返回堆顶的值
+如果大于堆顶，则push进堆，然后返回堆顶的值
 */
 package problems
 
 import "container/heap"
 
-/*  implement int head */
-// https://studygolang.com/pkgdoc
+/*
+第一步 实现 heap.Interface
+https://studygolang.com/pkgdoc
+*/
 type IntHeap []int
 
 func (h IntHeap) Len() int           { return len(h) }
 func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
 func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 func (h *IntHeap) Push(x interface{}) {
-	// Push and Pop use pointer receivers because they modify the slice's length,
-	// not just its contents.
 	*h = append(*h, x.(int))
 }
 func (h *IntHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
 	x := old[n-1]
-	*h = old[0 : n-1]
+	*h = old[:n-1]
 	return x
 }
 
-/* solution down here */
+/*
+第二步 以下是解答
+*/
 type KthLargest struct {
-	PQ      IntHeap
-	MaxSize int
+	PQ IntHeap
+	K  int
 }
 
 func KthConstructor(k int, nums []int) KthLargest {
-	kth := KthLargest{}
-	for _, v := range nums {
-		kth.PQ = append(kth.PQ, v)
-	}
+	var kth KthLargest
+	kth.K = k
+	kth.PQ = nums
 	heap.Init(&kth.PQ)
-	for kth.PQ.Len() > k {
+	for len(kth.PQ) > k {
 		heap.Pop(&kth.PQ)
 	}
-	kth.MaxSize = k
 	return kth
 }
 
-func (this *KthLargest) Add(val int) int {
-	if this.PQ.Len() == 0 {
-		heap.Push(&this.PQ, val)
-		return this.PQ[0]
+func (kth *KthLargest) Add(val int) int {
+	if kth.PQ.Len() < kth.K {
+		heap.Push(&kth.PQ, val)
+		return kth.PQ[0]
 	}
-	// when PQ is full, exec this
-	if this.PQ.Len() == this.MaxSize {
-		if val < this.PQ[0] {
-			return this.PQ[0]
-		}
-		heap.Pop(&this.PQ)
+	if val > kth.PQ[0] {
+		heap.Pop(&kth.PQ)
+		heap.Push(&kth.PQ, val)
 	}
-	// when PQ is not full, just push
-	heap.Push(&this.PQ, val)
-	return this.PQ[0]
+	return kth.PQ[0]
 }
 
 /**
