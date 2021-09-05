@@ -21,4 +21,14 @@ func TestFibonacci2(t *testing.T) {
 		t.Fatalf("Fibonacci2(%d) test fail", n)
 	}
 	t.Logf("Fibonacci2(%d) test success", n)
+	n = 2
+	if pro.Fibonacci2(uint64(n)) != 1 {
+		t.Fatalf("Fibonacci2(%d) test fail", n)
+	}
+	t.Logf("Fibonacci2(%d) test success", n)
+	n = 40
+	if pro.Fibonacci2(uint64(n)) != 102334155 {
+		t.Fatalf("Fibonacci2(%d) test fail", n)
+	}
+	t.Logf("Fibonacci2(%d) test success", n)
 }
