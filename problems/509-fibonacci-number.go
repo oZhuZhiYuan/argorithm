@@ -2,7 +2,7 @@ package problems
 
 import "math"
 
-// fibonacci O(2^n)
+// fibonacci O(2^n) 简单递归
 func Fibonacci(n uint64) uint64 {
 	if n == 0 || n == 1 {
 		return n
@@ -10,7 +10,7 @@ func Fibonacci(n uint64) uint64 {
 	return Fibonacci(n-1) + Fibonacci(n-2)
 }
 
-// fibonacci O(n)
+// fibonacci O(n)  累加法 (n <= 93)
 func Fibonacci2(n uint64) uint64 {
 	// 0 1 1 2 3 5 8
 	if n == 0 || n == 1 {
@@ -24,7 +24,7 @@ func Fibonacci2(n uint64) uint64 {
 	return ret
 }
 
-// leetcode 0 <= n <= 30
+// fibonacci O(n)  累加法 leetcode 0 <= n <= 30
 func Fibonacci3(n int) int {
 	// 0 1 1 2 3 5 8
 	if n == 0 || n == 1 {
