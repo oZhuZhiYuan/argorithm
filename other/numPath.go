@@ -28,6 +28,7 @@ func NumPath(chess [][]int) int {
 		chess[hi][j] = 1
 	}
 	// 状态方程 chess[i][j] = chess[i+1][j] + chess[i][j+1]
+	// 逐行遍历
 	for i := hi - 1; i >= 0; i-- {
 		for j := wi - 1; j >= 0; j-- {
 			if chess[i][j] == -1 {
