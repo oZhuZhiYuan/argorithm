@@ -1,7 +1,8 @@
 package problems
 
 /* https://leetcode-cn.com/problems/two-sum/
- */
+返回两数之和的【下标】
+*/
 
 // O(n)
 func Twosum(nums []int, target int) []int {
